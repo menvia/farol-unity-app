@@ -6,11 +6,15 @@ using System.Collections;
 public class BeaconMonitor : MonoBehaviour 
 {
     public Text beaconDistanceText;
-    public Text batteryIcon; 
+	public FarolBeaconPlugin farolBeaconPlugin;
 
-    static readonly string BATTERY_ICON  = Char.ConvertFromUtf32(0xf243);
+   	void Awake ()
+	{
+		print ("Awake");
+		farolBeaconPlugin = new FarolBeaconPlugin();
+	}
 
- 	void Start ()
+    void Start ()
 	{
 		print ("Start");
 	}
@@ -21,28 +25,22 @@ public class BeaconMonitor : MonoBehaviour
 		print ("Update");
 	   	UpdateStatusIndicators();
 	}
-    
-    /// <summary>
+
+ 	/// <summary>
     /// Find the current beacon device battery level and update indicators in the 
     /// UI accordingly.
     /// </summary>
     void UpdateStatusIndicators()
     {
-    	// set battery icon
-		batteryIcon.text = BATTERY_ICON;
+		string uuid = "64657665-6c6f-7064-6279-6d656e766961";
+		string major = "4";
+		string minor = "29";  
 
-		// set beacon informations
-		string uuid = "8492E75F-4FD6-469D-B132-04FE94921D8";
-		string major = "12768";
-		string minor = "3289";
+		var distance = farolBeaconPlugin.GetDistance(uuid, major, minor);
+//		var currentText = farolBeaconPlugin.GetText();
 
-		// invoke FarolBeaconPlugin
-		var distance = FarolBeaconPlugin.GetDistance(uuid, major, minor);
+		print("current " +distance);
 
-//		var distance = FarolBeaconPlugin.GetText();
-
-
-		// set beacon distance
 		beaconDistanceText.text = distance;
     }
 }
