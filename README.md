@@ -3,6 +3,7 @@
 ## Introduction
 
 **Farol Unity App** is a sample App that shows how to use **Farol Beacon** library in Unity3D environment. 
+
 **Farol Beacon** is a multiplataform library that enable users to easily build solutions using Bluetooth Beacons.
 
 # Run it
