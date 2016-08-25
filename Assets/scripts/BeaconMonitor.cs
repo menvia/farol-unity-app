@@ -3,28 +3,41 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Farol.Plataform;
 
 public class BeaconMonitor : MonoBehaviour 
 {
     public Text beaconDistanceText;
-	public FarolBeaconPlugin farolBeaconPlugin;
+    public FarolBeacon farolBeacon;
 
    	void Awake ()
 	{
 		print ("Awake");
-		farolBeaconPlugin = new FarolBeaconPlugin();
-	}
 
+		switch(Application.platform)
+		{
+			case RuntimePlatform.Android:
+				farolBeacon = FarolBeaconAndroid.Initialize();
+				break;
+			case RuntimePlatform.IPhonePlayer:
+//				bleBridge = new iOSBleBridge(); setar IPHONE Init
+				break;
+			default:
+				break;
+		}
+	}
+//
     void Start ()
 	{
 		print ("Start");
-	}
 
-	// Update is called once per frame
+	}
+//
+//	// Update is called once per frame
 	void Update () 
     {
 		print ("Update");
-	   	UpdateStatusIndicators();
+		UpdateStatusIndicators();
 	}
 
  	/// <summary>
@@ -33,25 +46,35 @@ public class BeaconMonitor : MonoBehaviour
     /// </summary>
     void UpdateStatusIndicators ()
 	{
+
+		Console.WriteLine ("vai chamar a lista de beacons"); 
 		// beacon configuration with parameters 
 		string uuid = "64657665-6c6f-7064-6279-6d656e766961";
 		string major = "4";
-		string minor = "29";  
+		string minor = "40";  
 
 		// Get Distance
-		var distance = farolBeaconPlugin.GetDistance(uuid, major, minor);
+		var distance = farolBeacon.GetDistance (uuid, major, minor);
+		Console.WriteLine ("distance " + distance);
 		beaconDistanceText.text = distance;
 
-		// Get and print beacon 
-		Beacon beacon = farolBeaconPlugin.GetBeacon(uuid, major, minor);
-		print ("Beacon information " + beacon.Uuid + " " + beacon.Major + " " + beacon.Minor + " " + beacon.Distance );
+////		// Get and print beacon 
+		Beacon beacon = farolBeacon.GetBeacon (uuid, major, minor);
+		if (beacon != null) {
+			Console.WriteLine ("Beacon information " + beacon.Uuid + " " + beacon.Major + " " + beacon.Minor + " " + beacon.Distance);
+		}
 
-		// Get and print nearest beacon 
-		Beacon nearestBeacon = farolBeaconPlugin.NearestBeacon();
-		print ("Nearest beacon information " + nearestBeacon.Uuid + " " + nearestBeacon.Major + " " + nearestBeacon.Minor + " " + nearestBeacon.Distance );
+//		// Get and print nearest beacon 
+		Beacon nearestBeacon = farolBeacon.NearestBeacon ();
+		if (nearestBeacon != null) {
+			Console.WriteLine ("Nearest beacon information " + nearestBeacon.Uuid + " " + nearestBeacon.Major + " " + nearestBeacon.Minor + " " + nearestBeacon.Distance);
+		}
 
-		// Get and print the beacons list 
-		List<Beacon> beacons = farolBeaconPlugin.GetBeacons ();
+		Console.WriteLine("vai chamar a lista de beacons "); 
+//		 Get and print the beacons list 
+		List<Beacon> beacons = farolBeacon.GetBeacons ();
+
+		Console.WriteLine("chamou a lista de beacons "+beacons); 
 
 		if (beacons != null) {
 			Console.WriteLine("total out "+ beacons.Count);
