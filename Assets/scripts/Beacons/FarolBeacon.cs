@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Farol.Plataform {
+namespace Farol.Beacons {
 
 	public interface FarolBeacon {
 

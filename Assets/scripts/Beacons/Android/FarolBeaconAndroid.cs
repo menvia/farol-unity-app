@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace Farol.Plataform {
+namespace Farol.Beacons {
 
 	#if UNITY_ANDROID
 	public class FarolBeaconAndroid : FarolBeacon {

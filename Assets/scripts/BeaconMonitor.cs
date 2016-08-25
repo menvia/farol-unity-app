@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Farol.Plataform;
+using Farol.Beacons;
 
 public class BeaconMonitor : MonoBehaviour 
 {
@@ -20,20 +20,19 @@ public class BeaconMonitor : MonoBehaviour
 				farolBeacon = FarolBeaconAndroid.Initialize();
 				break;
 			case RuntimePlatform.IPhonePlayer:
-//				bleBridge = new iOSBleBridge(); setar IPHONE Init
+//				farolBeacon = FarolBeaconiOS.Initialize(); setar IPHONE Init
 				break;
 			default:
 				break;
 		}
 	}
-//
+
     void Start ()
 	{
 		print ("Start");
-
 	}
-//
-//	// Update is called once per frame
+
+	// Update is called once per frame
 	void Update () 
     {
 		print ("Update");
@@ -46,8 +45,6 @@ public class BeaconMonitor : MonoBehaviour
     /// </summary>
     void UpdateStatusIndicators ()
 	{
-
-		Console.WriteLine ("vai chamar a lista de beacons"); 
 		// beacon configuration with parameters 
 		string uuid = "64657665-6c6f-7064-6279-6d656e766961";
 		string major = "4";
@@ -55,27 +52,23 @@ public class BeaconMonitor : MonoBehaviour
 
 		// Get Distance
 		var distance = farolBeacon.GetDistance (uuid, major, minor);
-		Console.WriteLine ("distance " + distance);
 		beaconDistanceText.text = distance;
 
-////		// Get and print beacon 
+		// Get and print beacon 
 		Beacon beacon = farolBeacon.GetBeacon (uuid, major, minor);
 		if (beacon != null) {
 			Console.WriteLine ("Beacon information " + beacon.Uuid + " " + beacon.Major + " " + beacon.Minor + " " + beacon.Distance);
 		}
 
-//		// Get and print nearest beacon 
+		// Get and print nearest beacon 
 		Beacon nearestBeacon = farolBeacon.NearestBeacon ();
 		if (nearestBeacon != null) {
 			Console.WriteLine ("Nearest beacon information " + nearestBeacon.Uuid + " " + nearestBeacon.Major + " " + nearestBeacon.Minor + " " + nearestBeacon.Distance);
 		}
 
-		Console.WriteLine("vai chamar a lista de beacons "); 
-//		 Get and print the beacons list 
+		// Get and print the beacons list 
 		List<Beacon> beacons = farolBeacon.GetBeacons ();
-
-		Console.WriteLine("chamou a lista de beacons "+beacons); 
-
+	
 		if (beacons != null) {
 			Console.WriteLine("total out "+ beacons.Count);
 			beacons.ForEach(beaconOfList => Console.WriteLine("Beacon information list uuid {0}, major {1}, minor {2}, distance {3}", 
