@@ -64,8 +64,7 @@ public class Example_FarolControllerUse : MonoBehaviour {
     void Start () {
 
         // Inicialização da singleton
-        FarolController.Instantiate();
-        //FarolController.Instantiate("4961df97-d090-40c1-821f-e2c99916e842");
+        FarolController.Instantiate("YOUR_APP_TOKEN_HERE");
 
         // Pegando lista de dispositivos, localizações e gatilhos
         //FarolController.DeviceList(onCompleteDeviceL);
@@ -73,7 +72,7 @@ public class Example_FarolControllerUse : MonoBehaviour {
         //FarolController.TriggerList(onCompleteTriggerL);
 
         // Cria um novo usuário | A callback onComplete recebe o usuário criado (OBS: só recebe se ele não existir)
-        FarolController.AppUser("Nome", "Sobrenome", "test@test.com18", onCompleteApp);
+        FarolController.AppUser("Nome", "Sobrenome", "test@test.com", onCompleteApp);
         
     }
 }
