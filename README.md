@@ -23,11 +23,12 @@ Supports any plataform (tested on Android and iOS)
 In order to run *Farol WS* library in your project you must change the *API Compatibility Level* to *.NET 2.0* in the Optimization settings for all plataforms in the Player Settings.
 
 To achieve this please follow the steps bellow: 
+
  * Open File -> Build Settings...
  * Click on Player Settings...
  * Open each platform tab in the Inspector, look for the section *Optimization* and change the Api Compatibility Level from *.NET 2.0 Subset* to *.NET 2.0*
 
- To understand the changes from one to the other, you can check the (Mono Compatibility table)[http://docs.unity3d.com/412/Documentation/ScriptReference/MonoCompatibility.html]
+To understand the difference from both .NET versions check the [Mono Compatibility table](http://docs.unity3d.com/412/Documentation/ScriptReference/MonoCompatibility.html)
 
 # Details
 
