@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Farol.Beacons {
 
-	public interface FarolBeacon {
+	public interface IFarolBeacon {
 
 		List<Beacon> GetBeacons ();
 

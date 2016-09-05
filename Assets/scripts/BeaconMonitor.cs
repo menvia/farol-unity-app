@@ -8,7 +8,7 @@ using Farol.Beacons;
 public class BeaconMonitor : MonoBehaviour 
 {
     public Text beaconDistanceText;
-    public FarolBeacon farolBeacon;
+    public IFarolBeacon farolBeacon;
 
    	void Awake ()
 	{
@@ -17,12 +17,15 @@ public class BeaconMonitor : MonoBehaviour
 		switch(Application.platform)
 		{
 			case RuntimePlatform.Android:
+				#if UNITY_ANDROID
 				farolBeacon = FarolBeaconAndroid.Initialize();
+				#endif
 				break;
 			case RuntimePlatform.IPhonePlayer:
 //				farolBeacon = FarolBeaconiOS.Initialize(); setar IPHONE Init
 				break;
 			default:
+				farolBeacon = FarolBeaconUnityPlayer.Initialize();
 				break;
 		}
 	}
@@ -35,7 +38,6 @@ public class BeaconMonitor : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-		print ("Update");
 		UpdateStatusIndicators();
 	}
 
@@ -51,7 +53,7 @@ public class BeaconMonitor : MonoBehaviour
 		string minor = "40";  
 
 		// Get Distance
-		var distance = farolBeacon.GetDistance (uuid, major, minor);
+		var distance = farolBeacon.GetDistance(uuid, major, minor);
 		beaconDistanceText.text = distance;
 
 		// Get and print beacon 

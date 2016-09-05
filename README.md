@@ -12,7 +12,7 @@ In order to run this sample, please clone and open the resulting folder using Un
 
 ## Details
 
-The current project was built using **Unity3D 5.3.5f1**
+The current project was built using **Unity3D 5.4.0f3**
 
 The current sample supports only the  Android platform.
 

@@ -7,7 +7,7 @@ using System.Globalization;
 namespace Farol.Beacons {
 
 	#if UNITY_ANDROID
-	public class FarolBeaconAndroid : FarolBeacon {
+	public class FarolBeaconAndroid : IFarolBeacon {
 
 		private AndroidJavaObject androidPlugin;
 		private NumberFormatInfo provider = new NumberFormatInfo();
