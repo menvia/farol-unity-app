@@ -21,9 +21,9 @@ public class BeaconMonitor : MonoBehaviour
 				farolBeacon = FarolBeaconAndroid.Initialize();
 				#endif
 				break;
-			case RuntimePlatform.IPhonePlayer:
+//			case RuntimePlatform.IPhonePlayer:
 //				farolBeacon = FarolBeaconiOS.Initialize(); setar IPHONE Init
-				break;
+//				break;
 			default:
 				farolBeacon = FarolBeaconUnityPlayer.Initialize();
 				break;
