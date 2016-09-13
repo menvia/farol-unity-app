@@ -72,6 +72,10 @@ public class Example_FarolControllerUse : MonoBehaviour {
             Debug.Log(" already exists!");
         }
     }
+    public void onFail(string s)
+    {
+        Debug.Log("Error code: " + s);
+    }
 
     public void onSuccessCheckIn(string s)
     {
@@ -89,6 +93,7 @@ public class Example_FarolControllerUse : MonoBehaviour {
     {
         Debug.Log("CHECKIN FAILURE! "+s);
     }
+    
 
     // Use this for initialization
     void Start () {
@@ -109,8 +114,8 @@ public class Example_FarolControllerUse : MonoBehaviour {
         //FarolController.TriggerList(onCompleteTriggerL);
         FarolController.DeviceInfoList(onCompleteDeviceInfo);
 
-        /// Cria um novo usuário | A callback onComplete recebe o usuário criado (OBS: só recebe se ele não existir)
-        //FarolController.AppUser("Nome", "Sobrenome", "test@test.com", onCompleteApp);
+        /// Cria um novo usuário | A callback onCompleteApp recebe o usuário criado (OBS: só recebe se ele não existir) | A segunda callback é para o caso de erro e retorna uma string
+        //FarolController.AppUser("Nome", "Sobrenome", "test@test.com", onCompleteApp, onFail);
     }
 
     void OnGUI()
